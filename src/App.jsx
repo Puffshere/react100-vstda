@@ -65,24 +65,17 @@ class Todolist extends Component {
         </div>
 
 
-        <div className="card-body-1 alert-warning">
-          <input type="checkbox"></input>
+        <div className="card-body-1 alert-primary">
+          <h5 className="font-weight-bold">Welcome to Very Simple Todo App!</h5>
+          <h5>Get started now by adding a new todo on the left.</h5>
 
-          <a className="edit-todo">
-          </a>
-
-          <div className="card-body-2 alert-danger">
-            <input type="checkbox"></input>
-            <div className="card-body-3 alert-success">
-              <input type="checkbox"></input>
+        
 
             </div>
 
           </div>
 
-        </div>
-
-      </div>
+        
 
     );
   }
