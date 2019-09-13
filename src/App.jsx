@@ -12,7 +12,7 @@ class App extends Component {
         <h3 className="text-white">Track of all things</h3>
         <hr className="my-4"></hr>
         <div className="row">
-          <div className="col">
+          <div className="col-4">
             <Addnew/>
           </div>
           <div className="col">
