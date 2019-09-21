@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class Todolist extends Component {
+class Todoscontain extends Component {
   render() {
     return (
       <div className="card">
@@ -19,4 +19,4 @@ class Todolist extends Component {
   }
 }
 
-export default Todolist;
+export default Todoscontain;
