@@ -6,10 +6,10 @@ class App extends Component {
     super(props);
     this.state = {
       priority: '0',
-      inputText: '',
+      inputText: '',  
       todoList: [],
       newId: 0
-    }
+    } 
 
     this.markCompleted = this.markCompleted.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
@@ -32,22 +32,22 @@ class App extends Component {
   };
 
   addNew() {
-    let todoListCopy = this.state.todoList.slice();
+    let todoListCopy = this.state.todoList;
     todoListCopy.push({
       text: this.state.inputText,
       priority: this.state.priority,
       editable: false,
-      id: this.state.newId,
+      id: this.state.newId += 1,
       completed: false,
     });
     this.setState({
       todoList: todoListCopy,
-      newId: this.state.newId + 1
-    });
+      });
+    console.log(todoListCopy)
   };
 
   deleteOldInput() {
-
+    this.setState({ inputText: '' });  
   };
 
   editTodo(e) {
@@ -65,7 +65,6 @@ class App extends Component {
 
   saveTodo(i, id, text, priority) {
     let todoListCopy = this.state.todoList.slice();
-
     let newTodo = {
       text,
       priority,
@@ -73,9 +72,7 @@ class App extends Component {
       id
     }
     todoListCopy.splice(i, 1, newTodo);
-
     this.setState({ todoList: todoListCopy });
-
   };
 
   selectOnChange(event) {
@@ -84,28 +81,15 @@ class App extends Component {
 
   markCompleted(todo) {
     let todoListCopy = this.state.todoList;
-
     for (let i = 0; i < todoListCopy.length; i++) {
       if (todoListCopy[i].id === todo.id) {
         todoListCopy[i].completed = !todoListCopy[i].completed
-        if(todoListCopy[i].completed){
-          // add class "completed" so the CSS applies
-        }
-
       }
       this.setState({ todoList: todoListCopy })
-      
-    };
-
-
-
-    // { !todoListCopy.completed ? this.props.completed : <textarea className="update-todo-text" onChange={this.props.textarea.completed} /> }
-
-
-
+      // console.log(this.props.todo.completed)
+      };
   };
 
-  // {!this.props.todoList.editable ? this.props.todoList.text : <textarea className='update-todo-text' onChange={this.onInputChange} defaultValue={this.props.todoList.text} />}
 
   render() {
     let fullTodoList = this.state.todoList.map((todo, index) => {
@@ -118,16 +102,17 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <h1 className='text-white'>Very Simple Todo App</h1>
-        <p className='text-white'>Track all of the things</p>
-        <hr></hr>
+        <h1 className='text-white hello'>Very Simple Todo App</h1>
+        <p className='text-white hello'>Track all of the things</p>   
+        <hr className='hello' id='star
+        '></hr>
         <div className='row'>
-          <div className='col-md-4'>
+          <div className='col-lg-4 lawn'>
             <div className='card shadow-lg' id='input-card-1'>
               <div className='card-header' id='header-1'>Add New Todo</div>
               <h4 className='text-black'> I want to.. </h4>
               <div className='listedItems'>
-                <textarea id='want-to' placeholder='' className='create-todo-text shadow' defaultValue={this.state.inputText} onChange={this.onInputChange} />
+                <textarea id='want-to' placeholder='' className='create-todo-text shadow' value={this.state.inputText} onChange={this.onInputChange} />
               </div>
               <h4 className='text-black'> How much of a priority is this? </h4>
               <div className='listedItems'>
@@ -143,7 +128,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-          <div className='col-md-8'>
+          <div className='col-lg-8 col-sm-12'>
             <div className='card shadow-lg' id='input-card-2'>
               <div className='card-header' id='header-2'>View Todos</div>
               <div className='alert-primary'>
@@ -151,11 +136,11 @@ class App extends Component {
                 <br></br>
                 {this.state.todoList.length === 0 ? 'Get started now by adding a new todo on the left.' : <ul>{fullTodoList}</ul>}
               </div>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
-    );
+    );     
   }
 };
 
