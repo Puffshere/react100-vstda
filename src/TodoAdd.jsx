@@ -40,7 +40,10 @@ class TodoAdd extends Component {
             3: "alert-danger"
         };
 
+        if(this.props.todo.editable){document.getElementById('check').checked = false}
+
         return (
+
 
             <div>
                 <li className={alert[this.props.todo.priority]} >

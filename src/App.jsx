@@ -69,7 +69,8 @@ class App extends Component {
       text,
       priority,
       editable: false,
-      id
+      id,
+      
     }
     todoListCopy.splice(i, 1, newTodo);
     this.setState({ todoList: todoListCopy });
