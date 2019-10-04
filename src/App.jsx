@@ -43,7 +43,7 @@ class App extends Component {
     this.setState({
       todoList: todoListCopy,
       });
-    console.log(todoListCopy)
+    
   };
 
   deleteOldInput() {
@@ -56,6 +56,7 @@ class App extends Component {
     for (let i = 0; i < newList.length; i++) {
       if (newList[i].id === index) {
         newList[i].editable = true;
+        newList[i].completed = false
       }
     };
     this.setState({
@@ -70,7 +71,8 @@ class App extends Component {
       priority,
       editable: false,
       id,
-      
+      completed: false
+
     }
     todoListCopy.splice(i, 1, newTodo);
     this.setState({ todoList: todoListCopy });
@@ -87,19 +89,20 @@ class App extends Component {
         todoListCopy[i].completed = !todoListCopy[i].completed
       }
       this.setState({ todoList: todoListCopy })
-      // console.log(this.props.todo.completed)
       };
   };
 
 
   render() {
     let fullTodoList = this.state.todoList.map((todo, index) => {
+      
 
       return (
         <TodoAdd key={index} id={todo.id} todo={todo} delete={() => this.deleteTodo(index)} markCompleted={(this.markCompleted)}
           edit={this.editTodo} save={(text, priority) => this.saveTodo(index, todo.id, text, priority)} />
       );
     });
+
 
     return (
       <div className='container'>

@@ -28,7 +28,7 @@ class TodoAdd extends Component {
     }
 
     editTodo(e) {
-        this.props.edit(e);  
+        this.props.edit(e);
     }
 
 
@@ -40,24 +40,27 @@ class TodoAdd extends Component {
             3: "alert-danger"
         };
 
-        if(this.props.todo.editable){document.getElementById('check').checked = false}
+        if (this.props.todo.editable && this.props.todo.completed) {
+            this.props.markCompleted(this.props.todo);
+        }
+
 
         return (
 
 
             <div>
                 <li className={alert[this.props.todo.priority]} >
-                    <label className='checkbox'><input type='checkbox' value="" id='check' onClick={() => this.props.markCompleted(this.props.todo)} /></label>
-                    {!this.props.todo.editable ? <label id='stone' className={this.props.todo.completed ? 'completed log' : 'log'}>{this.props.todo.text}</label> : <textarea className='update-todo-text' onChange={this.onInputChange} defaultValue={this.props.todo.text} />}
-                
-                    <button className='delete-todo pull-right active btn-circle btn doggy' onClick={this.props.delete}>
+                    <label className='checkbox'><input type='checkbox' className='completedCheckbox' checked={this.props.todo.completed} id='check' onChange={() => this.props.markCompleted(this.props.todo)} /></label>
+                    {!this.props.todo.editable ? <label id='stone' className={this.props.todo.completed ? 'completed log' : 'log'}>{this.props.todo.text}</label> : <textarea className='update-todo-text' id='phone' onChange={this.onInputChange} defaultValue={this.props.todo.text} />}
+
+                    <button className='delete-todo pull-right active btn-circle btn doggy shadow' onClick={this.props.delete}>
                         <i className='glyphicon glyphicon-erase'></i>
                     </button>
                     {!this.props.todo.editable ?
-                        <button className='edit-todo pull-right active btn-circle btn clown' id={this.props.id} onClick={this.editTodo}>
+                        <button className='edit-todo pull-right active btn-circle btn clown shadow' id={this.props.id} onClick={this.editTodo}>
                             <i className='glyphicon glyphicon-pencil'></i>
                         </button>
-                        : <div> <button className='pull-right active btn-circle btn update-todo clown' onClick={this.save}>S</button>
+                        : <div> <button className='pull-right active btn-circle btn update-todo swamp shadow' onClick={this.save}>Save</button>
                             <div className="homer">
                                 <select defaultValue={alert[this.props.todo.priority]} name='priority' className="create-todo-text mb-5 create-todo-priority shadow" onChange={this.onSelectChange}>
                                     <option value={0}>Select a priority</option>

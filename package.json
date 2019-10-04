@@ -9,6 +9,7 @@
     "less": "lessc src/css/style.less dist/css/style.css",
     "lint": "eslint .",
     "test": "npm run build && mocha test/.setup.js test/*.spec.js --exit"
+    
   },
   "dependencies": {
     "axios": "^0.19.0",
